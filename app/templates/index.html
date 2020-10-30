@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h3>{{ notations.title }}</h3>
+        <h4>{{ about.info }}</h4>
+        <li><a href="{{ url_for('past') }}">{{ notations.past }}</a></li>
+        <li>{{ notations.from_file }}</li>
+        <form action="{{ url_for('past') }}" method=post enctype=multipart/form-data>
+            <div class="form-group">
+                <label for="file">{{ notations.load_file }}</label>
+                <input type="file" name="file">
+            </div>
+            <div class="form-group">
+                <input type=submit value={{ notations.upload }}>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

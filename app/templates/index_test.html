@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="page-header"> 
+        <p>Mock</p>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h3>Upload text</h3>
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#file-form">As file</a></li>
+            <li><a data-toggle="pill" href="#text-form">As text</a></li>
+        </ul>
+    <div id="file-form" class="tab-pane fade in active">
+        <form action="" method=post enctype=multipart/form-data>
+            <div class="form-group">
+                <label for="file">Upload text file</label>
+                <input type="file" name="file">
+            </div>
+            <div class="form-group">
+                <input type=submit value=Upload>
+            </div>
+        </form>
+    </div>
+    <div id="text-form" class="tab-pane fade">
+        <form action="" method=post enctype=multipart/form-data>
+            <div class="form-group">
+                <label for="file">Past text</label>
+                <textarea class="form-control" type="text" name="text" rows="5" placeholder="Past here"></textarea>
+            </div>
+            <div class="form-group">
+                <input type=submit value=Upload>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>{{ notations.title }}</h3>
+        </div>
+        <div class="col-sm-4">
+        {% if download %}
+            <a class="btn btn-info pull-right" href="{{ url_for('download') }}" role="button">{{ notations.download }}</a>
+        {% endif %}
+        </div>
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#general_data">{{ notations.general_data }}</a></li>
+        <li><a data-toggle="tab" href="#word_frequency">{{ notations.word_frequency }}</a></li>
+        <li><a data-toggle="tab" href="#pos_frequency">{{ notations.pos_frequency }}</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="general_data" class="tab-pane fade in active">
+        {% for item in general.keys() %}
+            <h3>{{ item.capitalize() }}</h3>
+            <table class="table table-bordered">
+                <tbody>
+                {% for key in general[item] %}
+                    <tr>
+                        <td>{{ key.capitalize() }}</td>
+                        <td>{{ general[item][key]}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+        </div>
+        <div id="word_frequency" class="tab-pane fade">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        {% for header in word_data[0].keys()%}
+                        <th>{{ header.capitalize() }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in word_data %}
+                    <tr>
+                        {% for key in item.keys() %}
+                        <th>{{ item[key] }}</th>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div id="pos_frequency" class="tab-pane fade">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        {% for header in POS_data[0].keys()%}
+                        <th>{{ header.capitalize() }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in POS_data %}
+                    <tr>
+                        {% for key in item.keys() %}
+                        <th>{{ item[key] }}</th>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    <div>
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+*.e4p
+.gcloudignore
+.eric6project
+.swp
+__pycache__
+venv
+links.txt
+
