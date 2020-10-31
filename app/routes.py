@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, send_file, flash, url_for,
 from app import app
 
 from .text_processing import Text_Analyze
-from .files import temp_name, save_json, from_json, save_temp_xlsx, check_expiration, check_size
+from .files import temp_name, save_json, from_json, save_temp_xlsx, ensure_dir, check_expiration, check_size
 from .notations import Notations
 
 descriptor = Notations()
@@ -58,6 +58,7 @@ def count():
         all_data = {'General_data': descriptor.translate(check_lang(),  analized.general_data),
             'Word_frequency': descriptor.translate(check_lang(),  analized.words_analyzed),
             'POS_frequency': descriptor.translate(check_lang(),  analized.POS_analyzed)}
+        ensure_dir(app.config['UPLOAD_FOLDER'])
         if check_size(app.config['UPLOAD_FOLDER'], all_data, app.config['MAX_FILE_SIZE']):
             print(check_size(app.config['UPLOAD_FOLDER'], all_data))
             session['datafile'] = app.config['UPLOAD_FOLDER'] + '/' + temp_name('json')

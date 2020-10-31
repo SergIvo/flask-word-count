@@ -1,5 +1,5 @@
 *.e4p
-.gcloudignore
+*.json
 .eric6project
 .swp
 __pycache__

@@ -4,13 +4,20 @@ import json
 #from io import BytesIO, StringIO
 from string import ascii_letters
 from random import choice
-from os import listdir, remove
+from os import mkdir, listdir, remove
 from os.path import getmtime, getsize
 from sys import getsizeof
 from time import time
 from tempfile import NamedTemporaryFile
 
 import openpyxl
+
+def ensure_dir(dir):
+    try:
+        listdir(dir)
+    except Exception as ex:
+        print(f'No dir, exception occured {ex}')
+        mkdir(dir)
 
 def check_expiration(dir, maxtime = None):
     if not maxtime:
